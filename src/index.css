@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Geist';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-mono/GeistMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --nova-bg: rgba(8, 6, 20, 0.75);
+  --nova-surface: rgba(15, 10, 40, 0.55);
+  --nova-surface-solid: #0f0a28;
+  --nova-border: rgba(139, 92, 246, 0.15);
+  --nova-border-glow: rgba(139, 92, 246, 0.3);
+  --nova-accent: #a855f7;
+  --nova-accent-hover: #c084fc;
+  --nova-accent-glow: rgba(168, 85, 247, 0.4);
+  --nova-success: #34d399;
+  --nova-error: #f87171;
+  --nova-warning: #fbbf24;
+  --nova-text: #f0edf6;
+  --nova-text-dim: rgba(196, 181, 222, 0.7);
+  --nova-text-bright: #ffffff;
+  --nova-input-bg: rgba(6, 4, 16, 0.6);
+  --nova-glow: 0 0 30px rgba(139, 92, 246, 0.08), 0 0 60px rgba(139, 92, 246, 0.04);
+  --nova-card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+body {
+  margin: 0;
+  background: #000;
+  color: var(--nova-text);
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.3);
+  color: #fff;
+}
+
+input::placeholder {
+  color: rgba(196, 181, 222, 0.3);
+}
+
+select option {
+  background: #0f0a28;
+  color: var(--nova-text);
+}
