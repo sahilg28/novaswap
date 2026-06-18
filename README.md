@@ -2,6 +2,10 @@
 
 A decentralized token swap interface built on the Stellar testnet. Swap XLM and USDC directly against the Stellar DEX orderbook with real-time activity tracking powered by a Soroban smart contract.
 
+## Live Demo
+
+[https://novaswap01.netlify.app](https://novaswap01.netlify.app)
+
 ## Screenshots
 
 ### Landing Page
