@@ -17,25 +17,37 @@ function formatTime(ts) {
 
 export default function ActivityFeed({ swaps, loading }) {
   return (
-    <div className="w-full max-w-[440px] mx-auto mt-6">
+    <div className="w-full max-w-[440px] mx-auto mt-6 nova-fade-in-delay-1">
       <div className="relative bg-[var(--nova-surface)] backdrop-blur-2xl border border-[var(--nova-border)] rounded-3xl p-6 pointer-events-auto"
            style={{ boxShadow: 'var(--nova-card-shadow)' }}>
 
         <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-b from-purple-500/5 via-transparent to-transparent -z-10 blur-sm" />
 
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-semibold text-[var(--nova-text-bright)] tracking-tight">
-            Recent Swaps
-          </h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-base font-semibold text-[var(--nova-text-bright)] tracking-tight">
+              Recent Swaps
+            </h2>
+            <div className="flex items-center gap-1">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[9px] text-emerald-400/60 uppercase tracking-wider font-medium">Live</span>
+            </div>
+          </div>
           {loading && (
             <span className="inline-block w-3 h-3 border-2 border-purple-400/50 border-t-transparent rounded-full animate-spin" />
           )}
         </div>
 
         {swaps.length === 0 ? (
-          <p className="text-sm text-purple-300/30 text-center py-6">
-            No swaps recorded yet.
-          </p>
+          <div className="text-center py-8">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" className="mx-auto mb-3 text-purple-400/20">
+              <path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 15V3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M3 17v2a2 2 0 002 2h14a2 2 0 002-2v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <p className="text-sm text-purple-300/30">No swaps recorded yet.</p>
+            <p className="text-[11px] text-purple-300/20 mt-1">Swaps will appear here in real-time.</p>
+          </div>
         ) : (
           <div className="space-y-1.5">
             {swaps.map((swap, i) => (

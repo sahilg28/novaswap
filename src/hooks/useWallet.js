@@ -3,7 +3,7 @@ import { StellarWalletsKit, Networks } from '@creit.tech/stellar-wallets-kit'
 import { FreighterModule } from '@creit.tech/stellar-wallets-kit/modules/freighter'
 import { xBullModule } from '@creit.tech/stellar-wallets-kit/modules/xbull'
 import { AlbedoModule } from '@creit.tech/stellar-wallets-kit/modules/albedo'
-import { fetchXlmBalance } from '../lib/stellar'
+import { fetchXlmBalance, fetchBalances } from '../lib/stellar'
 
 let kitInitialized = false
 
@@ -19,6 +19,7 @@ function initKit() {
 export function useWallet() {
   const [address, setAddress] = useState(null)
   const [balance, setBalance] = useState(null)
+  const [balances, setBalances] = useState({ XLM: null, USDC: null })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const balanceInterval = useRef(null)
@@ -30,10 +31,12 @@ export function useWallet() {
   const refreshBalance = useCallback(async (addr) => {
     if (!addr) return
     try {
-      const bal = await fetchXlmBalance(addr)
-      setBalance(bal)
+      const all = await fetchBalances(addr)
+      setBalance(all.XLM)
+      setBalances(all)
     } catch {
       setBalance(null)
+      setBalances({ XLM: null, USDC: null })
     }
   }, [])
 
@@ -89,6 +92,7 @@ export function useWallet() {
   return {
     address,
     balance,
+    balances,
     loading,
     error,
     connect,

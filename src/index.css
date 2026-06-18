@@ -83,3 +83,30 @@ select option {
   background: #0f0a28;
   color: var(--nova-text);
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nova-fade-in {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.nova-fade-in-delay-1 {
+  animation: fadeInUp 0.6s ease-out 0.15s both;
+}
+
+.nova-fade-in-delay-2 {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.nova-fade-in-delay-3 {
+  animation: fadeInUp 0.6s ease-out 0.45s both;
+}

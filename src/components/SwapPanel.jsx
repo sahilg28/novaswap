@@ -117,7 +117,7 @@ export default function SwapPanel({ wallet, onSwapLogged }) {
           : 'Swap'
 
   return (
-    <div className="w-full max-w-[440px] mx-auto">
+    <div className="w-full max-w-[440px] mx-auto nova-fade-in">
       <div className="relative bg-[var(--nova-surface)] backdrop-blur-2xl border border-[var(--nova-border)] rounded-3xl p-6 pointer-events-auto"
            style={{ boxShadow: 'var(--nova-card-shadow)' }}>
 
@@ -138,16 +138,22 @@ export default function SwapPanel({ wallet, onSwapLogged }) {
         <div className="bg-[var(--nova-input-bg)] rounded-2xl p-4 mb-1.5 border border-white/[0.03]">
           <div className="flex items-center justify-between mb-2">
             <span className="text-[11px] font-medium text-purple-300/50 uppercase tracking-wider">You pay</span>
-            {wallet.address && fromAsset === 'XLM' && wallet.balance && (
-              <button
-                onClick={() => {
-                  const max = Math.max(0, parseFloat(wallet.balance) - 1.5)
-                  setAmount(max.toFixed(7).replace(/\.?0+$/, ''))
-                }}
-                className="text-[11px] font-medium text-purple-400/70 hover:text-purple-300 transition-colors cursor-pointer"
-              >
-                Max: {parseFloat(wallet.balance).toFixed(2)}
-              </button>
+            {wallet.address && wallet.balances && wallet.balances[fromAsset] && (
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] text-purple-300/40 font-mono">
+                  {parseFloat(wallet.balances[fromAsset]).toFixed(2)} {fromAsset}
+                </span>
+                <button
+                  onClick={() => {
+                    const raw = parseFloat(wallet.balances[fromAsset])
+                    const max = fromAsset === 'XLM' ? Math.max(0, raw - 1.5) : raw
+                    setAmount(max.toFixed(7).replace(/\.?0+$/, ''))
+                  }}
+                  className="text-[10px] font-semibold text-purple-400 hover:text-purple-300 transition-colors cursor-pointer px-1.5 py-0.5 rounded bg-purple-500/10 hover:bg-purple-500/20"
+                >
+                  MAX
+                </button>
+              </div>
             )}
           </div>
           <div className="flex items-center gap-3">
@@ -204,13 +210,23 @@ export default function SwapPanel({ wallet, onSwapLogged }) {
           </div>
         </div>
 
-        {/* Rate */}
+        {/* Rate info */}
         {estimate && estimate.sufficient && parseFloat(amount) > 0 && (
-          <div className="mt-4 px-1">
+          <div className="mt-4 px-1 space-y-1.5">
             <div className="flex justify-between items-center text-[11px]">
-              <span className="text-purple-300/40 uppercase tracking-wider">Rate</span>
-              <span className="text-purple-200/60 font-mono">
+              <span className="text-purple-300/40">Rate</span>
+              <span className="text-purple-200/70 font-mono">
                 1 {fromAsset} ≈ {estimate.rate.toFixed(6)} {toAsset}
+              </span>
+            </div>
+            <div className="flex justify-between items-center text-[11px]">
+              <span className="text-purple-300/40">Slippage tolerance</span>
+              <span className="text-purple-200/70 font-mono">1%</span>
+            </div>
+            <div className="flex justify-between items-center text-[11px]">
+              <span className="text-purple-300/40">Min. received</span>
+              <span className="text-emerald-400/70 font-mono">
+                {(estimate.estimatedOutput * 0.99).toFixed(4)} {toAsset}
               </span>
             </div>
           </div>
@@ -219,7 +235,7 @@ export default function SwapPanel({ wallet, onSwapLogged }) {
         {estimate && !estimate.sufficient && parseFloat(amount) > 0 && (
           <div className="mt-4 px-1">
             <p className="text-[11px] text-amber-400/80">
-              ⚠ Insufficient liquidity for this amount.
+              Insufficient liquidity for this amount.
             </p>
           </div>
         )}
