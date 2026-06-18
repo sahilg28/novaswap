@@ -25,3 +25,6 @@ dist-ssr
 
 # Soroban contract build artifacts
 contract/target
+
+# Claude
+.claude
