@@ -9,13 +9,13 @@ A decentralized token swap interface built on the Stellar testnet. Swap XLM and 
 ## Screenshots
 
 ### Landing Page
-![Landing Page](public/landing%20page.png)
+![Landing Page](./public/landing_page.png)
 
-### Wallet Connect Options
-![Wallet Connect](public/wallet_connect.png)
+### Wallet Connect Options (Freighter, xBull, Albedo)
+![Wallet Connect](./public/wallet_connect.png)
 
-### Transaction
-![Transaction](public/transaction_happen.png)
+### Transaction Proof
+![Transaction](./public/transaction_happen.png)
 
 ## Features
 
